@@ -1,0 +1,62 @@
+{# templates/list.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des étudiants</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<!-- Header Section -->
+<header class="bg-warning text-white text-center py-3 mb-4">
+    <h1 class="display-4">Bienvenue à la Liste des étudiants</h1>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4">Liste des étudiants</h2>
+
+            {% if etudiants is not defined or etudiants is empty %}
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">Aucun étudiant disponible.</h4>
+                </div>
+            {% else %}
+                <!-- Responsive Table -->
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped table-bordered text-center">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Age</th>
+                            <th>E-mail</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for etudiant in etudiants %}
+                            <tr>
+                                <td>{{ etudiant.Nom | upper }}</td>
+                                <td>{{ etudiant.Prenom }}</td>
+                                <td>{{ etudiant.Age }}</td>
+                                <td>{{ etudiant.Email }}</td>
+                                <td>{{ etudiant.Classe.Nom }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
